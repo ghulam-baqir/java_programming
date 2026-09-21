@@ -13,4 +13,4 @@ My Java practice programs, exercises and lab work.
 - `Main.java`: entry point to run the programs
 
 ## About
-BS Computer Science student at Sukkur IBA University.
+BS Computer Science  at Sukkur IBA University.
