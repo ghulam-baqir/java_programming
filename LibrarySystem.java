@@ -39,11 +39,11 @@ public class LibrarySystem {
             System.out.print("Enter choice: ");
 
             while (!sc.hasNextInt()) {
-                System.out.print("Number enter karo: ");
+                System.out.print("Please enter a number: ");
                 sc.next();
             }
             choice = sc.nextInt();
-            sc.nextLine(); // newline clear
+            sc.nextLine(); // clear leftover newline
 
             switch (choice) {
                 case 1: addBook(); break;
@@ -70,7 +70,7 @@ public class LibrarySystem {
         int id = sc.nextInt();
         sc.nextLine();
         if (findById(id) != null) {
-            System.out.println("Ye ID pehle se exist karti hai.");
+            System.out.println("This ID already exists.");
             return;
         }
         System.out.print("Title: ");
@@ -78,12 +78,12 @@ public class LibrarySystem {
         System.out.print("Author: ");
         String author = sc.nextLine();
         books.add(new Book(id, title, author));
-        System.out.println("Book add ho gayi.");
+        System.out.println("Book added successfully.");
     }
 
     static void viewBooks() {
         if (books.isEmpty()) {
-            System.out.println("Koi book nahi hai.");
+            System.out.println("No books available.");
             return;
         }
         System.out.println("ID | Title | Author | Status");
@@ -91,7 +91,7 @@ public class LibrarySystem {
     }
 
     static void searchBook() {
-        System.out.print("Title (ya uska hissa): ");
+        System.out.print("Title (or part of it): ");
         String key = sc.nextLine().toLowerCase();
         boolean found = false;
         for (Book b : books) {
@@ -100,7 +100,7 @@ public class LibrarySystem {
                 found = true;
             }
         }
-        if (!found) System.out.println("Koi book nahi mili.");
+        if (!found) System.out.println("No books found.");
     }
 
     static void issueBook() {
@@ -109,14 +109,14 @@ public class LibrarySystem {
         sc.nextLine();
         Book b = findById(id);
         if (b == null) {
-            System.out.println("Book nahi mili.");
+            System.out.println("Book not found.");
         } else if (b.issued) {
-            System.out.println("Book pehle se issued hai.");
+            System.out.println("This book is already issued.");
         } else {
             System.out.print("Member name: ");
             b.issuedTo = sc.nextLine();
             b.issued = true;
-            System.out.println("Book issue ho gayi.");
+            System.out.println("Book issued successfully.");
         }
     }
 
@@ -126,13 +126,13 @@ public class LibrarySystem {
         sc.nextLine();
         Book b = findById(id);
         if (b == null) {
-            System.out.println("Book nahi mili.");
+            System.out.println("Book not found.");
         } else if (!b.issued) {
-            System.out.println("Ye book issued nahi thi.");
+            System.out.println("This book is not currently issued.");
         } else {
             b.issued = false;
             b.issuedTo = "";
-            System.out.println("Book return ho gayi.");
+            System.out.println("Book returned successfully.");
         }
     }
 
@@ -142,10 +142,10 @@ public class LibrarySystem {
         sc.nextLine();
         Book b = findById(id);
         if (b == null) {
-            System.out.println("Book nahi mili.");
+            System.out.println("Book not found.");
         } else {
             books.remove(b);
-            System.out.println("Book delete ho gayi.");
+            System.out.println("Book deleted successfully.");
         }
     }
 }
